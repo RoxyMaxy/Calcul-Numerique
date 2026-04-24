@@ -23,12 +23,12 @@ double Fonction::operator() (double x)
 	return analyseur.Eval(); //Calcul du résultat de la fonction en x
 }
 
-double Fontion::derivee (double x, double h)
+double Fonction::derivee (double x, double h)
 {
 	double valPlus = (*this)(x+h); //f(x+h)
 	double valMoins = (*this)(x-h); //f(x-h)
 
-	return (valPLus - valMoins) / (2.0 * h);
+	return (valPlus - valMoins) / (2.0 * h);
 }
 
 bool Fonction::estContinue(double a, double b, int precision)
@@ -36,7 +36,7 @@ bool Fonction::estContinue(double a, double b, int precision)
 	int i;
 	double xActuel, fx;
 	double pas = (b - a) / precision; //Calcule l'écart entre deux points
-	for (i=0. i<=precision; i++)
+	for (i=0; i<=precision; i++)
 		{
 			xActuel = a + (i*pas);
 			fx = (*this)(xActuel); //Calcul de f(x)
@@ -49,7 +49,7 @@ bool Fonction::estContinue(double a, double b, int precision)
 	return true;
 }
 
-bool Fonction::estMonotone(double a, double b, double precision)
+bool Fonction::estMonotone(double a, double b, int precision)
 {
 	int i;
 	int signePrecedent = 0;
@@ -67,7 +67,7 @@ bool Fonction::estMonotone(double a, double b, double precision)
 		{
 			signeActuel = 1; //Signe positif
 		}
-		else if (valDerivee < 1e-7)
+		else if (valDerivee < -1e-7)
 		{
 			signeActuel = -1; //Signe négatif
 		}
