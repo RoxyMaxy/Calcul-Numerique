@@ -53,31 +53,35 @@ bool Fonction::estMonotone(double a, double b, double precision)
 {
 	int i;
 	int signePrecedent = 0;
-	int signeActuel = 0;
+	int signeActuel;
 	double pas = (b - a) / precision;
 	double xActuel, valDerivee;
 
-	xActuel = a + (i*pas);
-	valDerivee = derivee(xActuel); //C'est f'(x)
-
-	if (valDerivee > 1e-7)
+	for (i=0; i<=precision; i++)
 	{
-		signeActuel = 1; //Signe positif
-	}
-	else if (valDerivee < 1e-7)
-	{
-		signeActuel = -1; //Signe négatif
-	}
-
-	if (signeActuel != 0)
-	{
-		if (signePrecedent == 0)
+		signeActuel = 0;
+		xActuel = a + (i*pas);
+		valDerivee = derivee(xActuel); //C'est f'(x)
+	
+		if (valDerivee > 1e-7)
 		{
-			signePrecedent = signeActuel;
+			signeActuel = 1; //Signe positif
 		}
-		else if ( signeActuel != signePrecedent)
+		else if (valDerivee < 1e-7)
 		{
-			return false; //Cas de changement de signe, donc non-monotone
+			signeActuel = -1; //Signe négatif
+		}
+	
+		if (signeActuel != 0)
+		{
+			if (signePrecedent == 0)
+			{
+				signePrecedent = signeActuel;
+			}
+			else if ( signeActuel != signePrecedent)
+			{
+				return false; //Cas de changement de signe, donc non-monotone
+			}
 		}
 	}
 	return true;
