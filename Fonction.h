@@ -23,5 +23,5 @@ class Fonction
 		bool estVontinue(double a, double b, precision = 100) const;
 		bool estMonotone(double a, double b, precision = 100) const;
 		string getExpression() const;
-}
+};
 #endif
