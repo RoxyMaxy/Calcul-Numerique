@@ -1,14 +1,13 @@
 #include "Solve.h"
 #include <cmath>
-#include <sstream>
-#include <stdexcept>
+#include <iostream>
 
 using namespace std;
 
-double Dichotomie::resoudre(Fonction& f, double borneGauche, double borneDroite, double precision, int maxIterations)
+double Dichotomie::resoudre(Fonction& f, double a, double b, double precision, int maxIterations)
 {
-	double fGauche = f(borneGauche); //f(a)
-	double fDroite = f(borneDoite); //f(b)
+	double fGauche = f(a); //f(a)
+	double fDroite = f(b); //f(b)
 	double milieu, fMilieu;
 	int i;
 
@@ -48,16 +47,16 @@ double Dichotomie::resoudre(Fonction& f, double borneGauche, double borneDroite,
     return milieu;
 }
 
-double Newton::resoudre(Fonction& f, double borneGauche, double borneDroite, double precision, int maxIterations)
+double Newton::resoudre(Fonction& f, double a, double b, double precision, int maxIterations)
 {
-    double xCourant = (borneGauche + borneDroite) / 2.0;
+    double xCourant = (a + b) / 2.0;
 	int i;
 	double fx, fdx;
     for (i=0; i < maxIterations; i++)
     {
         fx = f(xCourant); // f(x_n)
 
-        if (abs(fx) < tolerance)
+        if (abs(fx) < precision)
         {
             return xCourant;
         }
