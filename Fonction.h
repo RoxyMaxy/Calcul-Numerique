@@ -17,11 +17,11 @@ class Fonction
 	
 	public:
 		Fonction(); //constructeur
-		void initialiseur(strin& expr);
-		double operator() (double x) const;
-		double derivee (double x, double h = 1e-5) const;
-		bool estVontinue(double a, double b, precision = 100) const;
-		bool estMonotone(double a, double b, precision = 100) const;
-		string getExpression() const;
+		void initialiseur(string& expr);
+		double operator() (double x);
+		double derivee (double x, double h = 1e-5);
+		bool estContinue(double a, double b, int precision = 100);
+		bool estMonotone(double a, double b, int precision = 100);
+		string getExpression();
 };
 #endif
