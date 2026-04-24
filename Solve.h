@@ -1,5 +1,5 @@
-#ifndef RESOLUTION_H
-#define RESOLUTION_H
+#ifndef SOLVE_H
+#define SOLVE_H
 
 #include "Fonction.h"
 
